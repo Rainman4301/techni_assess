@@ -1,0 +1,78 @@
+.container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.upload-section {
+  margin: 20px 0;
+}
+
+.file-input-label {
+  display: block;
+  padding: 15px;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.file-input-label:hover {
+  border-color: #007bff;
+}
+
+.pattern-section {
+  display: grid;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.pattern-input,
+.replacement-input {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.process-button {
+  background: #007bff;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+}
+
+.process-button:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+}
+
+.results-section {
+  margin-top: 30px;
+}
+
+.results-table {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f8f9fa;
+}

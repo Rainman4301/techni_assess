@@ -1,0 +1,7 @@
+# .gitignore
+
+# Environment files
+backend/.env
+.history
+fron_end/.history
+backend/.history

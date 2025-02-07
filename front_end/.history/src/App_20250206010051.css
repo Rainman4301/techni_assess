@@ -1,0 +1,163 @@
+/* General Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+h2 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* File Upload Section */
+.upload-section {
+  margin-bottom: 20px;
+}
+
+.file-input-label {
+  display: inline-block;
+  padding: 12px 20px;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.file-input-label input {
+  display: none; /* Hide the file input */
+}
+
+.file-input-label:hover {
+  background-color: #45a049;
+}
+
+input[type="file"]:focus {
+  outline: none;
+}
+
+/* Textarea Section */
+.input-section {
+  margin-bottom: 20px;
+}
+
+textarea {
+  width: 100%;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  resize: none;
+  transition: border 0.3s;
+}
+
+textarea:focus {
+  border: 1px solid #4CAF50;
+  outline: none;
+}
+
+/* Process Button */
+.process-button {
+  width: 100%;
+  padding: 15px;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.process-button:disabled {
+  background-color: #ddd;
+}
+
+.process-button:hover:not(:disabled) {
+  background-color: #45a049;
+}
+
+/* Regex Section */
+.regex-section {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border-radius: 8px;
+}
+
+pre {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+/* Results Section */
+.results-section {
+  margin-top: 30px;
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.results-table th,
+.results-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.results-table th {
+  background-color: #f2f2f2;
+}
+
+.results-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  .file-input-label, .process-button {
+    width: 100%;
+  }
+
+  textarea {
+    height: 100px;
+  }
+}
