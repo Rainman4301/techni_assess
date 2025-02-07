@@ -19,5 +19,10 @@
   }
 
 
+  // pip install django
+  // django-admin startproject backend
+  // cd backend
+  // python manage.py startapp regex_processor
+
   // python manage.py runserver
   
