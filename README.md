@@ -5,44 +5,6 @@ Full-Stack Application
 This project is a full-stack web application that utilizes React for the frontend and Django REST Framework for the backend. The application processes files, applies regex patterns to data, and provides the results through a RESTful API.
 Project Structure
 
-my_project/
-├── backend/                  # Django Backend Folder
-│   ├── backend/              # Django Project Folder (contains settings.py)
-│   │   ├── __init__.py
-│   │   ├── settings.py       # Django settings and configurations
-│   │   ├── urls.py           # URL routing for Django app
-│   │   └── wsgi.py           # WSGI entry point for deployment
-│   ├── regex_processor/      # Django App Folder (for the business logic)
-│   │   ├── migrations/       # Folder for database migrations
-│   │   ├── __init__.py
-│   │   ├── admin.py          # Django admin interface configurations (if needed)
-│   │   ├── apps.py           # Django app configurations
-│   │   ├── models.py         # Django models (if used for storing files or data)
-│   │   ├── serializers.py    # Django REST framework serializers
-│   │   ├── tests.py          # Tests for the app (optional)
-│   │   ├── views.py          # API views to handle file processing and regex matching
-│   │   ├── urls.py           # URL routing for the regex_processor app
-│   ├── manage.py             # Django management script (runserver, migrate, etc.)
-│   └── .env                  # Environment variables (for sensitive info like API keys)
-├── frontend/                 # React Frontend Folder
-│   ├── public/               # Public assets (HTML, images)
-│   │   ├── index.html        # Entry point HTML file
-│   │   └── favicon.ico
-│   ├── src/                  # React source code
-│   │   ├── assets/           # Assets like images, icons, etc.
-│   │   │   └── react.svg     # React logo (or any other assets)
-│   │   ├── App.css           # Styling for React app
-│   │   ├── App.jsx           # Main React app component
-│   │   ├── index.css         # Global CSS styles
-│   │   ├── index.jsx         # React entry point (DOM rendering)
-│   │   └── setupTests.js     # Jest setup file for testing (optional)
-│   ├── package.json          # React project configuration (dependencies, scripts)
-│   ├── .gitignore            # Files/folders to ignore for version control (e.g., node_modules)
-│   └── vite.config.js        # Vite configuration file (build tool for React)
-├── .gitignore                # Git ignore file for the whole project
-└── README.md                 # Project documentation (this file)
-
-Setup Instructions
 
 1. Backend Setup (Django)
 
