@@ -49,7 +49,7 @@ Update settings.py to include 'rest_framework' in the INSTALLED_APPS list.
 Configure URL routing, and create models, views, and serializers as needed.
 Don’t forget to set up CORS headers and environment variables (e.g., using a .env file).
 
-6. Run the Django Server
+7. Run the Django Server
 
 Once you’ve set up everything, run the server:
 bash
@@ -65,11 +65,14 @@ Your Django backend will be up and running at http://localhost:8000.
 Frontend Setup (React)
 
 1. Install Node.js
-
+   
 Before you proceed, make sure you have Node.js installed on your machine. If you don’t have it yet, download it from here.
-2. Create a React App with Vite
 
+
+3. Create a React App with Vite
+   
 Instead of using create-react-app, we are using Vite, a faster build tool. To create your React app, run:
+
 bash
 npm create vite@latest
 
@@ -88,6 +91,7 @@ npm install
 4. Run the Frontend App
 
 Once everything is installed, start the development server:
+
 bash
 npm run dev
 
