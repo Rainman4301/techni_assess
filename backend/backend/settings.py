@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'regex_processor',    #Custom app
 ]
 
-#A list of middleware components that are used by Django to process requests and responses. Middleware can handle things like security, sessions, CORS, and authentication.
+#A list of middleware components that are used by Django to process requests and responses. 
+# Middleware can handle things like security, sessions, CORS, and authentication.
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',    

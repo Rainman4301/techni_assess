@@ -5,6 +5,8 @@ import './App.css'
 
 
 
+// (This is a command that uses the npx tool to create a new Vite project.
+//  By specifying @latest, you ensure you get the latest version of Vite.)
 
 // npm creat vite@latest
 // react
@@ -28,9 +30,9 @@ function App() {
   // loading status, and the regex pattern that gets returned from the backend.
   const [file, setFile] = useState(null);
   const [userInput, setUserInput] = useState('');
-  const [processedData, setProcessedData] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [regexPattern, setRegexPattern] = useState('');
+  const [processedData, setProcessedData] = useState(null);
 
 
   // This function is triggered when the user clicks the "Process File" button.
