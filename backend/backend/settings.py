@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+import os      
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,28 +24,31 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-akrdc7rtw_rw^(a2dfsw!0#k1r*j^_0yyz4gz4-z=x+^015657'
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
+#  the project is in development mode. Don't use this in production!
 DEBUG = True
 
+
+# ALLOWED_HOSTS is an empty list, which means it will accept requests from any host. In a production environment, you should set this to the specific domains that can access the app.
 ALLOWED_HOSTS = []
 
-
+# includes all the Django applications and third-party libraries that are part of the project.
 # Application definition
-
 INSTALLED_APPS = [
-    'corsheaders',
+    'corsheaders',   #for handling Cross-Origin Resource Sharing (CORS) issues.
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'regex_processor',
+    'rest_framework',     #for building APIs
+    'regex_processor',    #Custom app
 ]
 
+#A list of middleware components that are used by Django to process requests and responses. Middleware can handle things like security, sessions, CORS, and authentication.
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',    
@@ -55,12 +62,14 @@ MIDDLEWARE = [
 
 # REST_FRAMEWORK = {'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.AllowAny']}
 # CORS_ORIGIN_ALLOW_ALL = True
+
+#  allows the frontend ( React app running locally) to make requests to the Django backend.
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',  # Your React frontend URL
 ]
 
 
-
+# This points to the URL configuration of the project. The URLs will be defined in backend/urls.py
 ROOT_URLCONF = 'backend.urls'
 
 TEMPLATES = [
@@ -79,13 +88,14 @@ TEMPLATES = [
     },
 ]
 
+# This specifies the WSGI application to use when deploying the app. It connects the Django app to the web server 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
 
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
+# This sets up the database backend for the Django project. In this case, it uses SQLite ('django.db.backends.sqlite3') with the database file located at BASE_DIR / 'db.sqlite3'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -127,7 +137,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
-
+# This sets the URL path for serving static files (like CSS, JS, images) in development.
 STATIC_URL = 'static/'
 
 # Default primary key field type

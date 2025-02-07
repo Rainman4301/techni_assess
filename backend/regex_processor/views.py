@@ -1,24 +1,21 @@
 
-
-
-
-
 '''
 This is where the actual business logic for file processing, 
 interacting with the OpenAI API, and returning the processed data happens.
 '''
 
 
-import os
-import csv
+import os                                                  #For interacting with the operating system                
+import csv                                      
 import logging
 from openpyxl import load_workbook
-from django.http import JsonResponse
-from django.core.files.storage import FileSystemStorage
-from dotenv import load_dotenv
-from django.views.decorators.csrf import csrf_exempt
-from .models import ProcessedFile
-import openai
+from django.http import JsonResponse                       #For returning JSON responses in Django.
+from django.core.files.storage import FileSystemStorage    # For handling file uploads and storage.
+from dotenv import load_dotenv                             #For loading environment variables from a .env file
+from django.views.decorators.csrf import csrf_exempt       #For disabling CSRF protection on a view.
+from .models import ProcessedFile                          #For interacting with the ProcessedFile model in the database.
+import openai                                              #For interacting with the OpenAI API.
+import re
 
 # Load environment variables
 load_dotenv()
@@ -27,14 +24,18 @@ load_dotenv()
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+
 # Constants
+#  Maximum allowed file size
 MAX_FILE_SIZE = 10 * 1024 * 1024  # 10MB
+# List of allowed file types
 ALLOWED_TYPES = [
     'text/csv',
     'application/vnd.ms-excel',
     'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
 ]
 openai.api_key = os.getenv("OPENAI_API_KEY")
+
 
 
 def validate_file(uploaded_file):
@@ -53,6 +54,7 @@ def validate_file(uploaded_file):
                 raise ValueError("Invalid CSV file: No header found.")
 
 
+
 def parse_csv(file_path):
     """Parse a CSV file and return rows as a list of dictionaries."""
     rows = []
@@ -61,6 +63,7 @@ def parse_csv(file_path):
         for row in reader:
             rows.append(row)
     return rows
+
 
 
 def parse_excel(file_path):
@@ -72,6 +75,7 @@ def parse_excel(file_path):
     for row in sheet.iter_rows(min_row=2, values_only=True):
         rows.append(dict(zip(headers, row)))
     return rows
+
 
 
 def get_regex_from_openai(user_input):
@@ -94,11 +98,25 @@ def get_regex_from_openai(user_input):
         )
         result = response.choices[0].message.content
 
-        result = result.split(' ')
 
-        regex_pattern = result[0].split('regex_pattern:')[1].strip()[:-1]
-        column_name = result[1].split('column_name:')[1].strip()[:-1]
-        displacement = result[2].split('displacement:')[1].strip()[:-1]
+        # Use regex to extract the values
+        regex_pattern = re.search(r"regex_pattern:\s*([^,]+)", result)
+        column_name = re.search(r"column_name:\s*([^,]+)", result)
+        displacement = re.search(r"displacement:\s*([^,]+)", result)
+
+        # Extract the values or return None if not found
+        regex_pattern = regex_pattern.group(1).strip() if regex_pattern else None
+        column_name = column_name.group(1).strip() if column_name else None
+        displacement = displacement.group(1).strip() if displacement else None
+
+
+
+
+        # result = result.split(' ')
+
+        # regex_pattern = result[0].split('regex_pattern:')[1].strip()[:-1]
+        # column_name = result[1].split('column_name:')[1].strip()[:-1]
+        # displacement = result[2].split('displacement:')[1].strip()[:-1]
         
         return regex_pattern, column_name, displacement
     
@@ -106,6 +124,7 @@ def get_regex_from_openai(user_input):
     except Exception as e:
         logger.error(f"Error generating regex from OpenAI: {str(e)}")
         raise ValueError("Failed to generate regex pattern from OpenAI.")
+
 
 
 def apply_regex_to_data(data, column_name, displacement):
@@ -122,6 +141,7 @@ def apply_regex_to_data(data, column_name, displacement):
     return processed_data
 
 
+# Main View Function
 @csrf_exempt
 def process_file(request):
     """Handle file upload, processing, and response."""
@@ -129,6 +149,8 @@ def process_file(request):
         return JsonResponse({'error': 'Invalid request method'}, status=405)
 
     try:
+
+        
         uploaded_file = request.FILES.get('file')
         user_input = request.POST.get('user_input')
 
@@ -183,3 +205,4 @@ def process_file(request):
     except Exception as e:
         logger.error(f"Unexpected error: {str(e)}")
         return JsonResponse({'error': 'An unexpected error occurred'}, status=500)
+    

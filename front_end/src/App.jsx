@@ -25,21 +25,29 @@ import './App.css'
 
 
 function App() {
+
+  // These state variables store the file, user input, processed data,
+  // loading status, and the regex pattern that gets returned from the backend.
   const [file, setFile] = useState(null);
   const [userInput, setUserInput] = useState('');
   const [processedData, setProcessedData] = useState(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [regexPattern, setRegexPattern] = useState('');
 
+
+  // This function is triggered when the user clicks the "Process File" button.
   const handleProcess = async (e) => {
     e.preventDefault();
     setIsProcessing(true);
     
     try {
+
+      // The file and userInput are packaged into formData (a special object that helps in sending files via HTTP requests).
       const formData = new FormData();
       formData.append('file', file);
       formData.append('user_input', userInput);
 
+      // he axios.post sends the data to the backend at http://localhost:8000
       const response = await axios.post('http://localhost:8000', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
