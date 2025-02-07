@@ -1,7 +1,5 @@
 import { useState } from 'react'
 import axios from 'axios'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
 import './App.css'
 
 
@@ -37,6 +35,8 @@ function App() {
 
   // This function is triggered when the user clicks the "Process File" button.
   const handleProcess = async (e) => {
+
+
     e.preventDefault();
     setIsProcessing(true);
     
@@ -47,7 +47,7 @@ function App() {
       formData.append('file', file);
       formData.append('user_input', userInput);
 
-      // he axios.post sends the data to the backend at http://localhost:8000
+      // axios.post sends the data to the backend at http://localhost:8000
       const response = await axios.post('http://localhost:8000', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',

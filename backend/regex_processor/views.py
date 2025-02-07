@@ -5,6 +5,11 @@ interacting with the OpenAI API, and returning the processed data happens.
 '''
 
 
+#  pip install django
+#  django-admin startproject backend
+#  cd backend
+#  python manage.py startapp regex_processor
+
 import os                                                  #For interacting with the operating system                
 import csv                                      
 import logging
@@ -109,15 +114,6 @@ def get_regex_from_openai(user_input):
         column_name = column_name.group(1).strip() if column_name else None
         displacement = displacement.group(1).strip() if displacement else None
 
-
-
-
-        # result = result.split(' ')
-
-        # regex_pattern = result[0].split('regex_pattern:')[1].strip()[:-1]
-        # column_name = result[1].split('column_name:')[1].strip()[:-1]
-        # displacement = result[2].split('displacement:')[1].strip()[:-1]
-        
         return regex_pattern, column_name, displacement
     
 
